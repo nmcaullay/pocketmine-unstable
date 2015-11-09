@@ -62,8 +62,8 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     make && make install
 
 # Set up Rasmus's handy PHP scripts
-COPY makephp /usr/bin/makephp
-COPY newphp /usr/bin/newphp
+COPY resources/makephp /usr/bin/makephp
+COPY resources/newphp /usr/bin/newphp
 RUN chmod +x /usr/bin/makephp /usr/bin/newphp
 
 # set up Apache environment variables
