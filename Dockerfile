@@ -97,7 +97,7 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 RUN mkdir $COMPOSER_HOME && chmod a+rw $COMPOSER_HOME
 
 # Add the pthreads
-pecl install pthreads
+RUN pecl install pthreads
 
 # update apt-get, and install wget
 #RUN apt-get -y update
