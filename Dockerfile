@@ -19,5 +19,5 @@ RUN chown -R pocketmine:100 /pocketmine
 #Expose the port from the container
 EXPOSE 19132
 
-CMD ["/pocketmine/bin/php5/bin/php", "/pocketmine/PocketMine-MP.phar"]
+CMD ["/usr/local/php70/bin/php", "/pocketmine/PocketMine-MP.phar"]
 
