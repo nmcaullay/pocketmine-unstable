@@ -4,6 +4,10 @@ MAINTAINER nmcaullay <nmcaullay@gmail.com>
 # Silence debconf's endless prattle
 ENV DEBIAN_FRONTEND noninteractive
 
+# update apt-get, and install wget
+RUN apt-get -y update
+RUN apt-get -y install python3-yaml wget
+
 #Create the pocketmine user
 RUN useradd -u 1000 -g 100 pocketmine
 
