@@ -1,4 +1,5 @@
-FROM coderstephen/php7
+# Use the latest Ubuntu base image
+FROM ubuntu:latest
 MAINTAINER nmcaullay <nmcaullay@gmail.com>
 
 # Silence debconf's endless prattle
