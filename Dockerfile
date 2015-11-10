@@ -74,7 +74,7 @@ ENV APACHE_RUN_USER=www-data \
     APACHE_PID_FILE=/var/run/apache2.pid
 
 # Update the default apache site with the config we created.
-ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
+ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 # configure Apache for prefork and start server
 RUN a2dismod mpm_event && a2enmod mpm_prefork && service apache2 restart
