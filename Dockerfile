@@ -38,7 +38,9 @@ RUN apt-get update && apt-get install -y \
     mcrypt \
     re2c \
     wget \
-    python3-yaml && \
+    python3-yaml \
+    php-pear \
+    php7-dev && \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 RUN curl -O http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
     curl -O http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
