@@ -72,6 +72,10 @@ ENV APACHE_RUN_USER=www-data \
 # Update the default apache site with the config we created.
 ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
+# copy in the PHP7 files into apache land
+RUN cp /usr/local/php70/libphp7.so /usr/lib/apache2/modules/
+RUN cp /usr/local/php70/php7.load /etc/apache2/mods-available/
+
 # configure Apache for prefork and start server
 RUN a2dismod mpm_event 
 RUN a2enmod mpm_prefork 
