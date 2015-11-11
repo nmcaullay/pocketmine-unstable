@@ -62,11 +62,6 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     --with-openssl && \
     make && make install
 
-# Set up Rasmus's handy PHP scripts
-COPY resources/makephp /usr/bin/makephp
-COPY resources/newphp /usr/bin/newphp
-RUN chmod +x /usr/bin/makephp /usr/bin/newphp
-
 # set up Apache environment variables
 ENV APACHE_RUN_USER=www-data \
     APACHE_RUN_GROUP=www-data \
@@ -78,11 +73,13 @@ ENV APACHE_RUN_USER=www-data \
 ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 # configure Apache for prefork and start server
-RUN a2dismod mpm_event && a2enmod mpm_prefork && service apache2 restart
-EXPOSE 80
+RUN a2dismod mpm_event 
+RUN a2enmod mpm_prefork 
+RUN a2enmod php7
+RUN service apache2 restart
 
-# Reconfigure the installed PHP version
-RUN /usr/bin/newphp 7
+# expose the port
+EXPOSE 80
 
 # Set up composer variables
 ENV COMPOSER_BINARY=/usr/local/bin/composer \
