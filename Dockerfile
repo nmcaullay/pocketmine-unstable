@@ -59,6 +59,7 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     --with-apxs2=/usr/bin/apxs2 \
     --with-libdir=/lib/x86_64-linux-gnu \
     --enable-fpm \
+    --enable-maintiner-zts \
     --enable-pthreads \
     --with-openssl && \
     make && make install
