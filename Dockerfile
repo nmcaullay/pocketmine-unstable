@@ -97,7 +97,7 @@ ENV COMPOSER_BINARY=/usr/local/bin/composer \
 ENV PATH $PATH:$COMPOSER_HOME
 
 # Install composer system-wide
-RUN curl -sS https://getcomposer.org/installer | php && \
+RUN curl -sS https://getcomposer.org/installer | /usr/local/php70/bin/php && \
     mv composer.phar $COMPOSER_BINARY && \
     chmod +x $COMPOSER_BINARY
 
