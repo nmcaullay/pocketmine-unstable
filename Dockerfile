@@ -66,7 +66,7 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
 # get PECL
 RUN cd /tmp
 RUN wget http://pear.php.net/go-pear.phar
-RUN php /tmp/go-pear.phar
+RUN /usr/local/php70/bin/php /tmp/go-pear.phar
 
 # set up Apache environment variables
 ENV APACHE_RUN_USER=www-data \
