@@ -41,11 +41,11 @@ RUN apt-get update && apt-get install -y \
     python3-yaml
 #    php-pear
 
-#RUN curl -O http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
-#    curl -O http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
-#    dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb && \
-#    dpkg -i bison_2.7.1.dfsg-1_amd64.deb && \
-#    apt-mark hold libbison-dev && apt-mark hold bison
+RUN curl -O http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
+    curl -O http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
+    dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb && \
+    dpkg -i bison_2.7.1.dfsg-1_amd64.deb && \
+    apt-mark hold libbison-dev && apt-mark hold bison
 
 # Clone the PHP source repository
 RUN git clone https://github.com/php/php-src.git /usr/local/src/php
@@ -81,6 +81,9 @@ RUN a2dismod mpm_event
 RUN a2enmod mpm_prefork 
 RUN a2enmod php7
 #RUN service apache2 restart
+
+# Install the php-pear stuff
+RUN apt-get install -y php-pear
 
 # expose the port
 EXPOSE 80
