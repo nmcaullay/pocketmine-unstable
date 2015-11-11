@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install and set up packages we will need to compile PHP
 RUN apt-get update && apt-get install -y \
-#    apache2-mpm-prefork \
-#    apache2-prefork-dev \
+    apache2-mpm-prefork \
+    apache2-prefork-dev \
     aufs-tools \
     automake \
     btrfs-tools \
@@ -63,14 +63,14 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     make && make install
 
 # set up Apache environment variables
-#ENV APACHE_RUN_USER=www-data \
-#    APACHE_RUN_GROUP=www-data \
-#    APACHE_LOG_DIR=/var/log/apache2 \
-#    APACHE_LOCK_DIR=/var/lock/apache2 \
-#    APACHE_PID_FILE=/var/run/apache2.pid
+ENV APACHE_RUN_USER=www-data \
+    APACHE_RUN_GROUP=www-data \
+    APACHE_LOG_DIR=/var/log/apache2 \
+    APACHE_LOCK_DIR=/var/lock/apache2 \
+    APACHE_PID_FILE=/var/run/apache2.pid
 
 # Update the default apache site with the config we created.
-#ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
+ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 # copy in the PHP7 files into apache land
 #RUN cp /usr/local/php70/libphp7.so /usr/lib/apache2/modules/
