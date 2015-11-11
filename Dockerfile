@@ -83,7 +83,7 @@ RUN a2enmod php7
 #RUN service apache2 restart
 
 # Install the php-pear stuff
-RUN apt-get install -y php-pear
+#RUN apt-get install -y php-pear
 
 # expose the port
 EXPOSE 80
