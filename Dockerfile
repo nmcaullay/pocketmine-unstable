@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install and set up packages we will need to compile PHP
 RUN apt-get update && apt-get install -y \
-    apache2-mpm-prefork \
-    apache2-prefork-dev \
+#    apache2-mpm-prefork \
+#    apache2-prefork-dev \
     aufs-tools \
     automake \
     btrfs-tools \
@@ -38,14 +38,14 @@ RUN apt-get update && apt-get install -y \
     mcrypt \
     re2c \
     wget \
-    python3-yaml \
-    php-pear && \
-    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
-RUN curl -O http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
-    curl -O http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
-    dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb && \
-    dpkg -i bison_2.7.1.dfsg-1_amd64.deb && \
-    apt-mark hold libbison-dev && apt-mark hold bison
+    python3-yaml
+#    php-pear
+
+#RUN curl -O http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb && \
+#    curl -O http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb && \
+#    dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb && \
+#    dpkg -i bison_2.7.1.dfsg-1_amd64.deb && \
+#    apt-mark hold libbison-dev && apt-mark hold bison
 
 # Clone the PHP source repository
 RUN git clone https://github.com/php/php-src.git /usr/local/src/php
@@ -63,24 +63,24 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     make && make install
 
 # set up Apache environment variables
-ENV APACHE_RUN_USER=www-data \
-    APACHE_RUN_GROUP=www-data \
-    APACHE_LOG_DIR=/var/log/apache2 \
-    APACHE_LOCK_DIR=/var/lock/apache2 \
-    APACHE_PID_FILE=/var/run/apache2.pid
+#ENV APACHE_RUN_USER=www-data \
+#    APACHE_RUN_GROUP=www-data \
+#    APACHE_LOG_DIR=/var/log/apache2 \
+#    APACHE_LOCK_DIR=/var/lock/apache2 \
+#    APACHE_PID_FILE=/var/run/apache2.pid
 
 # Update the default apache site with the config we created.
-ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
+#ADD resources/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 # copy in the PHP7 files into apache land
-RUN cp /usr/local/php70/libphp7.so /usr/lib/apache2/modules/
-RUN cp /usr/local/php70/php7.load /etc/apache2/mods-available/
+#RUN cp /usr/local/php70/libphp7.so /usr/lib/apache2/modules/
+#RUN cp /usr/local/php70/php7.load /etc/apache2/mods-available/
 
 # configure Apache for prefork and start server
 RUN a2dismod mpm_event 
 RUN a2enmod mpm_prefork 
 RUN a2enmod php7
-RUN service apache2 restart
+#RUN service apache2 restart
 
 # expose the port
 EXPOSE 80
