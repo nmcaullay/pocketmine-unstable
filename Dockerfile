@@ -6,7 +6,8 @@ MAINTAINER nmcaullay <nmcaullay@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN echo "deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/" >> /etc/apt/sources.list
-RUN apt-get update && apt-get install php7-nightly
+RUN apt-get -y update
+RUN apt-get -y install php7-nightly
 RUN cp /usr/local/php7/libphp7.so /usr/lib/apache2/modules/
 RUN cp /usr/local/php7/php7.load /etc/apache2/mods-available/
 
