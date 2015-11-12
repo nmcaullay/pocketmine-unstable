@@ -5,6 +5,7 @@ MAINTAINER nmcaullay <nmcaullay@gmail.com>
 # Silence debconf's endless prattle
 ENV DEBIAN_FRONTEND noninteractive
 
+# install PHP, Apache and WGET
 RUN echo "deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/" >> /etc/apt/sources.list
 RUN apt-get -y update
 RUN apt-get -y --force-yes install php7-nightly apache2 python3-yaml wget
