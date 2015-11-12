@@ -15,6 +15,9 @@ RUN cp /usr/local/php7/php7.load /etc/apache2/mods-available/
 RUN a2dismod mpm_event
 RUN a2enmod mpm_prefork
 RUN a2enmod php7
+
+RUN /usr/local/php7/bin/pear install pecl/pthreads
+
 RUN service apache2 restart
 
 # update apt-get, and install wget
