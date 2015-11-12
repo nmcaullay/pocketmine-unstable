@@ -16,6 +16,9 @@ RUN a2dismod mpm_event
 RUN a2enmod mpm_prefork
 RUN a2enmod php7
 
+RUN cd /tmp
+RUN wget http://pear.php.net/go-pear.phar -O /tmp/go-pear.phar
+RUN /usr/local/php7/bin/php /tmp/go-pear.phar
 RUN /usr/local/php7/bin/pear install pecl/pthreads
 
 RUN service apache2 restart
