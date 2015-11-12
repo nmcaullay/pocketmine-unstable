@@ -14,6 +14,7 @@ RUN cp /usr/local/php7/php7.load /etc/apache2/mods-available/
 RUN a2dismod mpm_event
 RUN a2enmod mpm_prefork
 RUN a2enmod php7
+RUN service apache2 restart
 
 # update apt-get, and install wget
 #RUN apt-get -y update
@@ -37,5 +38,5 @@ RUN chown -R pocketmine:100 /pocketmine
 #Expose the port from the container
 EXPOSE 19132
 
-CMD ["/usr/local/php70/bin/php", "/pocketmine/PocketMine-MP.phar"]
+CMD ["/usr/local/php7/bin/php", "/pocketmine/PocketMine-MP.phar"]
 
