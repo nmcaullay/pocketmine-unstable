@@ -68,8 +68,8 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     --with-openssl && \
     make && make install
 
-RUN cp /usr/local/php7/libphp7.so /usr/lib/apache2/modules/
-RUN cp /usr/local/php7/php7.load /etc/apache2/mods-available/
+#RUN cp /usr/local/php7/libphp7.so /usr/lib/apache2/modules/
+#RUN cp /usr/local/php7/php7.load /etc/apache2/mods-available/
 
 RUN a2dismod mpm_event
 RUN a2enmod mpm_prefork
