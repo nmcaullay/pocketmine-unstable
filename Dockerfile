@@ -65,9 +65,8 @@ RUN cd /usr/local/src/php && ./buildconf && ./configure \
     --enable-fpm \
     --enable-maintainer-zts \
     --enable-pthreads \
-    --with-openssl
-RUN make 
-RUN make install
+    --with-openssl && \
+    make && make install
 
 RUN cp /usr/local/php7/libphp7.so /usr/lib/apache2/modules/
 RUN cp /usr/local/php7/php7.load /etc/apache2/mods-available/
