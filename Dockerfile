@@ -10,7 +10,7 @@ RUN apt-get install -y \
     wget \
     python3-yaml
     
-RUN wget http://jenkins.pocketmine.net/view/PHP/job/PHP-PocketMine-Linux/lastSuccessfulBuild/artifact/archive/linux/64bit/PHP_7.0.0RC3_x86-64_Linux.tar.gz -O -O /tmp/PHP.tar.gz
+RUN wget http://jenkins.pocketmine.net/view/PHP/job/PHP-PocketMine-Linux/lastSuccessfulBuild/artifact/archive/linux/64bit/PHP_7.0.0RC3_x86-64_Linux.tar.gz -O /tmp/PHP.tar.gz
 
 RUN tar -xvf --directory /usr/local/php7 /tmp/PHP.tar.gz
 
