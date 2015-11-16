@@ -16,6 +16,11 @@ RUN wget http://jenkins.pocketmine.net/view/PHP/job/PHP-PocketMine-Linux/lastSuc
 RUN mkdir -p /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
 RUN tar -xvf /tmp/PHP.tar.gz -C /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
 
+# Get the PEAR, get the weakref
+RUN wget http://pear.php.net/go-pear.phar -O /tmp/go-pear.phar
+RUN /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/bin/php7/bin/php /tmp/go-pear.phar
+RUN /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/bin/php7/bin/pear install pecl/weakref
+
 #Create the pocketmine user
 RUN useradd -u 1000 -g 100 pocketmine
 
