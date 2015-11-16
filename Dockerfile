@@ -12,8 +12,9 @@ RUN apt-get install -y \
     
 RUN wget http://jenkins.pocketmine.net/view/PHP/job/PHP-PocketMine-Linux/lastSuccessfulBuild/artifact/archive/linux/64bit/PHP_7.0.0RC3_x86-64_Linux.tar.gz -O /tmp/PHP.tar.gz
 
-RUN mkdir /usr/local/php7
-RUN tar -xvf /tmp/PHP.tar.gz -C /usr/local/php7
+#RUN mkdir /usr/local/php7
+RUN mkdir /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
+RUN tar -xvf /tmp/PHP.tar.gz -C /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
 
 #Create the pocketmine user
 RUN useradd -u 1000 -g 100 pocketmine
@@ -34,5 +35,6 @@ RUN chown -R pocketmine:100 /pocketmine
 #Expose the port from the container
 EXPOSE 19132
 
-CMD ["/usr/local/php7/bin/php7/bin/php", "/pocketmine/PocketMine-MP.phar"]
+#CMD ["/usr/local/php7/bin/php7/bin/php", "/pocketmine/PocketMine-MP.phar"]
+CMD ["/var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/bin/php7/bin/php", "/pocketmine/PocketMine-MP.phar"]
 
