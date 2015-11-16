@@ -13,7 +13,7 @@ RUN apt-get install -y \
 RUN wget http://jenkins.pocketmine.net/view/PHP/job/PHP-PocketMine-Linux/lastSuccessfulBuild/artifact/archive/linux/64bit/PHP_7.0.0RC3_x86-64_Linux.tar.gz -O /tmp/PHP.tar.gz
 
 #RUN mkdir /usr/local/php7
-RUN mkdir /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
+RUN mkdir -p /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
 RUN tar -xvf /tmp/PHP.tar.gz -C /var/lib/jenkins/jobs/PHP-PocketMine-Linux/workspace/compile/linux/64bit/
 
 #Create the pocketmine user
